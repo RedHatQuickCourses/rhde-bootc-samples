@@ -1,0 +1,4 @@
+FROM registry.lab.example.com:5000/rhel10/rhel-bootc:10.0
+ADD yum.repos.d /etc/yum.repos.d
+RUN dnf install -y httpd && systemctl enable httpd
+ADD html /var/www/html
