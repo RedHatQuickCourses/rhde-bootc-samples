@@ -1,7 +1,6 @@
 FROM registry.lab.example.com:5000/rhel10/rhel-bootc:10.0
 ADD yum.repos.d /etc/yum.repos.d
 RUN dnf install -y httpd && systemctl enable httpd && dnf clean all
-RUN mkdir -p /usr/webapp/html && chmod -R  a+rX /usr/webapp && \
-  sed -i 's?DocumentRoot "/var/www/html"?DocumentRoot "/usr/webapp/html"?' /etc/httpd/conf/httpd.conf && \
-  sed -i 's?Directory "/var/www/html"?Directory "/usr/webapp/html"?' /etc/httpd/conf/httpd.conf
+RUN mkdir -p /usr/webapp/html && chmod -R a+rX /usr/webapp && \
+  sed -i '1,$ s?/var/www?/usr/webapp/?' /etc/httpd/conf/httpd.conf
 ADD html /usr/webapp/html
