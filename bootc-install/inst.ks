@@ -30,4 +30,6 @@ cat > /home/core/.ssh/authorized_keys << EOFSSH
 REPLACE_WTH_SSH_PUB_KEY
 EOFSSH
 
+echo "bootc-test" > /etc/hostname
+chmod 644 /etc/hostname
 %end
