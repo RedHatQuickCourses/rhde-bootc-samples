@@ -3,4 +3,5 @@ ADD yum.repos.d /etc/yum.repos.d
 ADD html /webapp/html
 RUN dnf install -y httpd && systemctl enable httpd && dnf clean all
 RUN chmod -R a+rX /webapp && \
+  semanage fcontext -a -t httpd_sys_content_t "/webapp(/.*)?" && \
   sed -i '1,$ s?/var/www/?/webapp/?' /etc/httpd/conf/httpd.conf
