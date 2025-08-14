@@ -1,0 +1,12 @@
+FROM registry.lab.example.com:5000/rhel10/rhel-bootc:10.0
+ADD yum.repos.d /etc/yum.repos.d
+RUN mkdir -p /usr/lib/bootc/kargs.d && \
+  dnf install -y firewalld httpd && \
+  dnf clean all && \
+  firewall-offline-cmd --zone=public --add-service=http && \
+  systemctl enable httpd && \
+  systemctl enable firewalld
+ADD sysctl.d /usr/lib/sysctl.d
+ADD kargs.d /usr/lib/bootc/kargs.d
+ADD html /var/www/html
+
