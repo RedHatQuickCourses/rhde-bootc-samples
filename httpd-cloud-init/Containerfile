@@ -1,0 +1,3 @@
+FROM registry.lab.example.com:5000/httpd-bootc:v1.0
+RUN dnf -y install cloud-init && systemctl enable cloud-init && dnf clean all
+  
