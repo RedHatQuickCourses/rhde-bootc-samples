@@ -9,4 +9,3 @@ sudo podman run --rm -it --privileged --pull=newer \
     registry.lab.example.com:5000/rhel10/bootc-image-builder \
     --type qcow2 --local --config /config.toml \
     registry.lab.example.com:5000/httpd-cloud-init:v1.0
-
