@@ -8,7 +8,5 @@ virt-install --name bootc-qcow2 \
 --import \
 --os-variant rhel10.0 \
 --graphics=none \
---cloud-init clouduser-ssh-key=edge-key.pub
+--cloud-init user-data=user-data
 
-# do --extra-arg has any effect?
-#--extra-arg console=ttyS0 -v
