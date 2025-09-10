@@ -9,6 +9,3 @@ sudo podman run --rm -it --privileged --pull=newer \
     registry.lab.example.com:5000/rhel10/bootc-image-builder \
     --type qcow2 --local --config /config.toml \
     registry.lab.example.com:5000/httpd-bootc:v1.0
-
-# Problably need a different image which adds cloud-init packages and services
-
