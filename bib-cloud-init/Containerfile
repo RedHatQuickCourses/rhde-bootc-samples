@@ -1,2 +1,5 @@
 FROM registry.lab.example.com:5000/httpd-bootc:v1.0
-RUN dnf -y install cloud-init && systemctl enable cloud-init && dnf clean all
+RUN dnf -y install cloud-init qemu-guest-agent && \
+  systemctl enable cloud-init && \
+  systemctl enable qemu-guest-agent && \
+  dnf clean all
