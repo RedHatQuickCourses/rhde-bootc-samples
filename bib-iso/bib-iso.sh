@@ -8,5 +8,5 @@ sudo podman run --rm -it --privileged --pull=newer \
     -v $(pwd)/output:/output \
     registry.lab.example.com:5000/rhel10/bootc-image-builder \
     --type iso --config /config.toml \
-    registry.lab.example.com:5000/httpd-bootc:v1.0
+    registry.lab.example.com:5000/httpd-system:v1.0
 
