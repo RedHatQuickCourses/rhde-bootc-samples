@@ -10,6 +10,4 @@ RUN dnf install -y firewalld cockpit httpd php-fpm && \
 ADD html /webapp/html
 RUN sed -i '1,$ s?/var/www/?/webapp/?' /etc/httpd/conf/httpd.conf && \
   chmod -R a+rX /webapp && \
-  semanage fcontext -a -t httpd_sys_content_t "/webapp(/.*)?" && \
-  echo 'Webapp files are not here' > /var/www/html/index.html
-ADD tmpfiles.d /usr/lib/tmpfiles.d
+  semanage fcontext -a -t httpd_sys_content_t "/webapp(/.*)?"
