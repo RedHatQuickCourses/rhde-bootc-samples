@@ -1,0 +1,14 @@
+FROM registry.lab.example.com:5000/rhel10/rhel-bootc:10.0
+ADD yum.repos.d /etc/yum.repos.d
+RUN dnf install -y firewalld cockpit httpd php-fpm && \
+  dnf clean all && \
+  firewall-offline-cmd --zone=public --add-service=cockpit && \
+  firewall-offline-cmd --zone=public --add-service=http && \
+  systemctl enable firewalld && \
+  systemctl enable cockpit.socket && \
+  systemctl enable httpd 
+ADD html /webapp/html
+RUN sed -i '1,$ s?/var/www/?/webapp/?' /etc/httpd/conf/httpd.conf && \
+  chmod -R a+rX /webapp && \
+  semanage fcontext -a -t httpd_sys_content_t "/webapp(/.*)?"
+ADD tmpfiles.d /usr/lib/tmpfiles.d
