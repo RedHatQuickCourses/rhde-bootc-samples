@@ -1,0 +1,7 @@
+FROM registry.lab.example.com:5000/rhel10/rhel-bootc:10.0
+ADD yum.repos.d /etc/yum.repos.d
+ADD html /webapp/html
+RUN dnf install -y nginx && systemctl enable nginx && dnf clean all
+RUN chmod -R a+rX /webapp && \
+  semanage fcontext -a -t httpd_sys_content_t "/webapp(/.*)?" && \
+  sed -i '1,$ s?/usr/share/nginx/?/webapp/?' /etc/nginx/nginx.conf
